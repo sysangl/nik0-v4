@@ -1,101 +1,86 @@
-particlesJS("star-background", {
-    particles: {
-        number: {
-            value: 30,
+(async () => {
+await loadSlim(tsParticles);
+
+await tsParticles.load({
+    id: "star-background",
+    options: {
+        fullScreen: {
+            zIndex: 0,
+            enable: false
         },
-        color: {
-            value: "#ffffff"
-        },
-        shape: {
-            type: "circle",
-            stroke: {
-                width: 0,
-                color: "#000000"
+        particles: {
+            number: {
+                value: 200,
+                density: {
+                    enable: false,
+                    area: 10,
+                },
             },
-            polygon: {
-                nb_sides: 5
+            color: {
+                value: "#ffffff"
             },
-        },
-        opacity: {
-            value: 1,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 0.25,
-                opacity_min: 0,
-                sync: false
-            }
-        },
-        size: {
-            value: 8,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 0.333,
-                size_min: 0,
-                sync: false
-            }
-        },
-        line_linked: {
-            enable: false,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.4,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 0.1,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-            attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
-            }
-        }
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: {
-                enable: true,
-                mode: "bubble"
+            shape: {
+                type: "circle",
+                polygon: {
+                    nb_sides: 5
+                },
             },
-            onclick: {
-                enable: true,
-                mode: "push"
-            },
-            resize: true
-        },
-        modes: {
-            grab: {
-                distance: 400,
-                line_linked: {
-                    opacity: 1
+            opacity: {
+                value: 0.6,
+                random: true,
+                anim: {
+                    enable: true,
+                    speed: 0.25,
+                    opacity_min: 0,
+                    sync: false
                 }
             },
-            bubble: {
-                distance: 83.9,
-                size: 1,
-                duration: 3,
-                opacity: 1,
-                speed: 3
+            size: {
+                value: 4,
+                random: true,
+                anim: {
+                    enable: true,
+                    speed: 0.333,
+                    size_min: 0,
+                    sync: false
+                }
             },
-            repulse: {
-                distance: 200,
-                duration: 0.4
+            line_linked: {
+                enable: false,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.4,
+                width: 1
             },
-            push: {
-                particles_nb: 4
-            },
-            remove: {
-                particles_nb: 2
+            move: {
+                enable: true,
+                speed: 0.1,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200
+                }
             }
-        }
+        },
+        interactivity: {
+            events: {
+                onHover: { enable: true, mode: "bubble" },
+            },
+            modes: {
+                bubble: {
+                    distance: 400,
+                    size: 6,
+                    duration: 3,
+                    opacity: 1,
+                    speed: 3
+                },
+            },
+        },
     },
-    retina_detect: true
 });
+})();
