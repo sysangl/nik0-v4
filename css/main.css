@@ -8,3 +8,19 @@
 body {
     background-color: var(--background-darkest);
 }
+
+#content {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    
+    background: linear-gradient(180deg,#000000 0%, #00103a 100%);
+}
+
+#star-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
