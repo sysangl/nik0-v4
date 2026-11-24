@@ -2,13 +2,14 @@
     --background-dark: #1e1e1e;
     --background-darker: #090909;
     --background-darkest: #000;
+    --background-blue: #00103A;
 }
 
 
 body {
-    background-color: var(--background-darkest);
+    background-color: var(--background-blue);
     display: grid;
-    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100vh 80px 100vh;
     margin: 0;
     font-family: 'Electrolize';
 }
@@ -17,13 +18,26 @@ body {
     display: grid;
     align-items: end;
     justify-items: center;
-    background: linear-gradient(180deg,#000000 0%, #000000 40%, #00103a 100%);
+    background: linear-gradient(180deg,var(--background-darkest) 0%, var(--background-darkest) 40%, var(--background-blue) 100%);
+    overflow: hidden;
 }
 
 #heights-container img {
     position: absolute;
     bottom: 5px;
     height: 80%;
+    overflow: hidden;
+}
+
+#heights-container #markings {
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    position: absolute;
+    pointer-events: none;
+    margin: 20px;
+
+    box-sizing: border-box;
+    z-index: 5;
 }
 
 #tower-heights {
@@ -54,7 +68,7 @@ body {
     width: 100%;
     height: 20%;
     bottom: 0;
-    background: linear-gradient(180deg,#00000000 0%, #00103a 98%);
+    background: linear-gradient(180deg,transparent 0%, var(--background-blue) 98%);
     z-index: 4;
     pointer-events: none;
 }
@@ -78,8 +92,9 @@ body {
     padding: 10px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 500ms ease;
+    transition: opacity 200ms ease;
     background-color: #0000002c;
+    z-index: 10;
 }
 
 #niko-popup.active {
@@ -93,7 +108,6 @@ body {
 #info-container {
     width: 100%;
     height: 100%;
-    background: #00103A;
 }
 
 #connector {
@@ -115,13 +129,48 @@ body {
 }
 
 #connector.active #diagonal {
-    transition: stroke-dashoffset 500ms ease !important;
+    transition: stroke-dashoffset 400ms ease !important;
 }
 
 #connector.active #horizontal {
-    transition: stroke-dashoffset 380ms ease 490ms !important;
+    transition: stroke-dashoffset 380ms ease 300ms !important;
 }
 
 #connector.active #diagonal, #connector.active #horizontal {
     stroke-dashoffset: 0 !important;
+}
+
+
+#info-container {
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 2.2rem repeat(1, 1fr);
+    grid-template-columns: max-content repeat(1, 1fr);
+}
+
+#info-container header {
+    font-size: 2rem;
+    align-self: center;
+    word-wrap: none;
+}
+#info-container .stripes {
+    background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    #ffffff 20px,
+                    #ffffff 35px
+                ),
+                linear-gradient(
+                    to bottom,
+                    #ffffff00,
+                    #ffffff00
+                );
+    width: auto;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    height: 1.6rem;
+    margin-left: 10px;
 }

@@ -106,10 +106,7 @@ nikoPng.addEventListener('click', (e) => {
 nikoPng.addEventListener('mousemove', handlePngMove)
 nikoPng.addEventListener('mouseenter', updateConnectorLine)
 
-
-
-function handlePngClick(e) {
-    e.preventDefault();
+function mouseToCanvas(e) {
     const pngRect = nikoPng.getBoundingClientRect()
     
     const clickX = e.clientX - pngRect.left
@@ -121,7 +118,15 @@ function handlePngClick(e) {
     
     const canvasX = Math.floor(clickX * scaleX)
     const canvasY = Math.floor(clickY * scaleY)
-    
+
+    return [canvasX, canvasY]
+}
+
+function handlePngClick(e) {
+    e.preventDefault();
+    const canvasCoord = mouseToCanvas(e)
+    const canvasX = canvasCoord[0]
+    const canvasY = canvasCoord[1]
 
     if (isOpaqueAt(canvasX,canvasY)) {
         nikoPng.style.pointerEvents = 'none';
@@ -136,18 +141,9 @@ function handlePngClick(e) {
 
 function handlePngMove(e) {
     e.preventDefault();
-    const pngRect = nikoPng.getBoundingClientRect()
-    
-    const clickX = e.clientX - pngRect.left
-    const clickY = e.clientY - pngRect.top
-    
-    const scaleX = nikoPng.naturalWidth / pngRect.width
-    const scaleY = nikoPng.naturalHeight / pngRect.height
-    
-    
-    const canvasX = Math.floor(clickX * scaleX)
-    const canvasY = Math.floor(clickY * scaleY)
-    
+    const canvasCoord = mouseToCanvas(e)
+    const canvasX = canvasCoord[0]
+    const canvasY = canvasCoord[1]
 
     if (isOpaqueAt(canvasX,canvasY)) {
         nikoPng.classList.add('hover')
