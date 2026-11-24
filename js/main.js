@@ -177,6 +177,8 @@ function isOpaqueAt(x, y) {
 
 
 function updateConnectorLine() {
+    const container = document.getElementById('heights-container')
+    const contRect = container.getBoundingClientRect()
     const diagonal = document.getElementById('diagonal')
     const horizontal = document.getElementById('horizontal')
 
@@ -185,8 +187,8 @@ function updateConnectorLine() {
     
     const imageRect = nikoPng.getBoundingClientRect()
 
-    const startX = popupRect.left
-    const startY = popupRect.bottom
+    const startX = popupRect.left - contRect.left
+    const startY = popupRect.bottom - contRect.top
 
     const endX = startX - imageRect.width/8
     const endY = imageRect.top+imageRect.height/16

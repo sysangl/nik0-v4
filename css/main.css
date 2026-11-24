@@ -79,6 +79,7 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity 500ms ease;
+    background-color: #0000002c;
 }
 
 #niko-popup.active {
@@ -118,7 +119,7 @@ body {
 }
 
 #connector.active #horizontal {
-    transition: stroke-dashoffset 500ms ease 500ms !important;
+    transition: stroke-dashoffset 380ms ease 490ms !important;
 }
 
 #connector.active #diagonal, #connector.active #horizontal {
