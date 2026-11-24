@@ -10,7 +10,7 @@ await tsParticles.load({
         },
         particles: {
             number: {
-                value: 200,
+                value: 260,
                 density: {
                     enable: false,
                     area: 10,
@@ -36,7 +36,7 @@ await tsParticles.load({
                 }
             },
             size: {
-                value: 4,
+                value: 0.5,
                 random: true,
                 anim: {
                     enable: true,
@@ -73,8 +73,8 @@ await tsParticles.load({
             },
             modes: {
                 bubble: {
-                    distance: 400,
-                    size: 6,
+                    distance: 80,
+                    size: 1,
                     duration: 3,
                     opacity: 1,
                     speed: 3
@@ -84,3 +84,80 @@ await tsParticles.load({
     },
 });
 })();
+
+
+const nikoPng = document.getElementById('niko-heights')
+let canvas, ctx, imageData;
+
+nikoPng.addEventListener('load', function() {
+    canvas = document.createElement('canvas');
+    canvas.width = nikoPng.naturalWidth
+    canvas.height = nikoPng.naturalHeight
+    ctx = canvas.getContext('2d')
+    ctx.drawImage(nikoPng,0,0)
+    imageData = ctx.getImageData(0,0,canvas.width,canvas.height).data
+})
+
+nikoPng.addEventListener('click', handlePngClick);
+nikoPng.addEventListener('mousemove', handlePngMove)
+
+function handlePngClick(e) {
+    e.preventDefault();
+    const pngRect = nikoPng.getBoundingClientRect()
+    
+    const clickX = e.clientX - pngRect.left
+    const clickY = e.clientY - pngRect.top
+    
+    const scaleX = nikoPng.naturalWidth / pngRect.width
+    const scaleY = nikoPng.naturalHeight / pngRect.height
+    
+    
+    const canvasX = Math.floor(clickX * scaleX)
+    const canvasY = Math.floor(clickY * scaleY)
+    
+
+    if (isOpaqueAt(canvasX,canvasY)) {
+        nikoPng.style.pointerEvents = 'none';
+        const underlyingElement = document.elementFromPoint(e.clientX, e.clientY);    
+        nikoPng.style.pointerEvents = 'auto';
+        if (underlyingElement && underlyingElement !== document.body) {
+            underlyingElement.click();
+        }
+    }
+
+}
+
+function handlePngMove(e) {
+    e.preventDefault();
+    const pngRect = nikoPng.getBoundingClientRect()
+    
+    const clickX = e.clientX - pngRect.left
+    const clickY = e.clientY - pngRect.top
+    
+    const scaleX = nikoPng.naturalWidth / pngRect.width
+    const scaleY = nikoPng.naturalHeight / pngRect.height
+    
+    
+    const canvasX = Math.floor(clickX * scaleX)
+    const canvasY = Math.floor(clickY * scaleY)
+    
+
+    if (isOpaqueAt(canvasX,canvasY)) {
+        nikoPng.classList.add('hover')
+    } else {
+        nikoPng.classList.remove('hover')
+    }
+
+}
+
+
+function isOpaqueAt(x, y) {
+    if (!imageData) return false
+    try {
+        const index = (y * canvas.width + x) * 4 + 3;
+        const alpha = imageData[index]
+        return alpha > 125
+    } catch (error) {
+        return false
+    }
+}
