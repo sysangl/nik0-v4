@@ -11,16 +11,28 @@
     <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 
     <link rel="stylesheet" href="./css/main.css" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Electrolize&family=Lora:ital,wght@0,400..700;1,400..700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="heights-container">
         <div id="star-background"></div>
-        <img id="tower-heights" src="./assets/heights-transparent.png"/>
+        <img id="tower-heights" src="./assets/heights-coloured.png"/>
         <button type="button" onclick="alert('pressed')" id="niko-button"></button>
         <img id="niko-heights" src="./assets/niko-heights.png">
-        </img>
-
         <div id="fade-overlay"></div>
+
+        <div id="niko-popup">
+            <span id="title">niko~</span><br>
+            proto
+        </div>
+
+        <svg id="connector">
+            <path id="diagonal"></path>
+            <path id="horizontal"></path>
+        </svg>
+
     </div>
 
     <div id="info-container">

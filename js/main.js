@@ -86,7 +86,9 @@ await tsParticles.load({
 })();
 
 
+const connectorSvg = document.getElementById('connector')
 const nikoPng = document.getElementById('niko-heights')
+const nikoPopup = document.getElementById('niko-popup')
 let canvas, ctx, imageData;
 
 nikoPng.addEventListener('load', function() {
@@ -98,8 +100,13 @@ nikoPng.addEventListener('load', function() {
     imageData = ctx.getImageData(0,0,canvas.width,canvas.height).data
 })
 
-nikoPng.addEventListener('click', handlePngClick);
+nikoPng.addEventListener('click', (e) => {
+    handlePngClick(e);
+});
 nikoPng.addEventListener('mousemove', handlePngMove)
+nikoPng.addEventListener('mouseenter', updateConnectorLine)
+
+
 
 function handlePngClick(e) {
     e.preventDefault();
@@ -144,8 +151,13 @@ function handlePngMove(e) {
 
     if (isOpaqueAt(canvasX,canvasY)) {
         nikoPng.classList.add('hover')
+        connectorSvg.classList.add('active')
+        nikoPopup.classList.add('active')
+
     } else {
         nikoPng.classList.remove('hover')
+        connectorSvg.classList.remove('active')
+        nikoPopup.classList.remove('active')
     }
 
 }
@@ -160,4 +172,41 @@ function isOpaqueAt(x, y) {
     } catch (error) {
         return false
     }
+}
+
+
+
+function updateConnectorLine() {
+    const diagonal = document.getElementById('diagonal')
+    const horizontal = document.getElementById('horizontal')
+
+    const popup = document.getElementById('niko-popup')
+    const popupRect = popup.getBoundingClientRect()
+    
+    const imageRect = nikoPng.getBoundingClientRect()
+
+    const startX = popupRect.left
+    const startY = popupRect.bottom
+
+    const endX = startX - imageRect.width/8
+    const endY = imageRect.top+imageRect.height/16
+
+    const diagX = endX
+    const diagY = startY + (imageRect.width/8)
+
+    diagonal.setAttribute(
+        "d",
+        `M ${startX} ${startY} L ${diagX} ${diagY}`
+    )
+
+    horizontal.setAttribute(
+        "d",
+        `M ${diagX} ${diagY} L ${imageRect.left+9*imageRect.width/16} ${diagY}`
+    )
+
+    diagonal.style.strokeDasharray = diagonal.getTotalLength()
+    diagonal.style.strokeDashoffset = diagonal.getTotalLength()
+    horizontal.style.strokeDasharray = horizontal.getTotalLength()
+    horizontal.style.strokeDashoffset = horizontal.getTotalLength()
+
 }
