@@ -208,3 +208,22 @@ function updateConnectorLine() {
     horizontal.style.strokeDashoffset = horizontal.getTotalLength()
 
 }
+
+
+$(function () {
+    $("html, body").animate(
+        { scrollTop: 0 },
+        100,
+        "linear"
+    );
+
+	$("#scroll-arrows").on("click", function (e) {
+		e.preventDefault();
+		$("html, body").animate(
+			{ scrollTop: $("#info-container").offset().top },
+			500,
+			"linear"
+		);
+	});
+});
+
