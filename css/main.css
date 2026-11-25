@@ -4,7 +4,10 @@
     --background-darkest: #000;
     --background-blue: #00103A;
 }
-
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: var(--background-blue);
@@ -13,6 +16,52 @@ body {
     margin: 0;
     font-family: 'Electrolize';
     scroll-behavior: smooth;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#preloader-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--background-darkest);
+    z-index: 1000;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+#preloader {
+    color: #fff;
+    font-size: 1.5rem;
+    width: 20%;
+    text-align: center;
+}
+
+.preloader-stripe {
+    display: grid;
+    width: 2px;
+    height: 1.2rem;
+    background: #fff;
+    margin: 0 5px;
+    display: inline-block;
+    animation: preloader 1000ms infinite ease-in-out;
+}
+
+@keyframes preloader { 
+    0% { 
+        opacity: 1;
+    }
+    50% { 
+        opacity: 0;
+    }
+    100% { 
+        opacity: 1;
+    }  
 }
 
 #heights-container {
