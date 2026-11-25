@@ -5,7 +5,7 @@
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>NIK0//PROFILE</title>
+        <title>NIK0//HEIGHTS</title>
 
         <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 
@@ -27,7 +27,7 @@
             <img id="tower-heights" src="./assets/heights-coloured.png" />
             <button
                 type="button"
-                onclick="alert('pressed')"
+                onclick="showProfile('niko')"
                 id="niko-button"
             ></button>
             <img id="niko-heights" src="./assets/niko-heights.png" />
@@ -36,6 +36,72 @@
             <div id="niko-popup">
                 <span id="title">niko~</span><br />
                 proto
+                <br>
+                <span class="note">—— click for more info ——</span>
+            </div>
+
+            <div id="niko-profile">
+                <div id="left">
+                    <div id="image"></div>
+                    <div id="stats">
+                        <span>Arcai FBRCC</span>
+                        <ul>
+                            <li>
+                                <div class="progressbar-title">
+                                <h3>Focus</h3>
+                                <span class="percent" id="focus"></span>
+                                </div>
+                                <div class="bar-container">
+                                    <span class="progressbar" id="focus"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="progressbar-title">
+                                <h3>Bandwidth</h3>
+                                <span class="percent" id="bandwidth"></span>
+                                </div>
+                                <div class="bar-container">
+                                    <span class="progressbar" id="bandwidth"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="progressbar-title">
+                                <h3>Reach</h3>
+                                <span class="percent" id="reach"></span>
+                                </div>
+                                <div class="bar-container">
+                                    <span class="progressbar" id="reach"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="progressbar-title">
+                                <h3>Control</h3>
+                                <span class="percent" id="control"></span>
+                                </div>
+                                <div class="bar-container">
+                                    <span class="progressbar" id="control"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="progressbar-title">
+                                <h3>Capacity</h3>
+                                <span class="percent" id="capacity"></span>
+                                </div>
+                                <div class="bar-container">
+                                    <span class="progressbar" id="capacity"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <span id="title">Niko</span> <br>
+                    <span class="hint">DESIGNATION: </span>N1-K0 <br>
+                    <span class="hint">SPECIES: </span>Protogen <br>
+                    <span class="hint">AWAKENING: </span>N/A <br>
+                    <span class="hint">FACTION: </span>Syantika <br>
+
+                </div>
             </div>
 
             <svg id="connector">

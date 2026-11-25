@@ -1,90 +1,3 @@
-(async () => {
-    await loadSlim(tsParticles);
-
-    await tsParticles.load({
-        id: "star-background",
-        options: {
-            fullScreen: {
-                zIndex: 0,
-                enable: false,
-            },
-            particles: {
-                number: {
-                    value: 260,
-                    density: {
-                        enable: false,
-                        area: 10,
-                    },
-                },
-                color: {
-                    value: "#ffffff",
-                },
-                shape: {
-                    type: "circle",
-                    polygon: {
-                        nb_sides: 5,
-                    },
-                },
-                opacity: {
-                    value: 0.6,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 0.25,
-                        opacity_min: 0,
-                        sync: false,
-                    },
-                },
-                size: {
-                    value: 0.5,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 0.333,
-                        size_min: 0,
-                        sync: false,
-                    },
-                },
-                line_linked: {
-                    enable: false,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1,
-                },
-                move: {
-                    enable: true,
-                    speed: 0.1,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200,
-                    },
-                },
-            },
-            interactivity: {
-                events: {
-                    onHover: { enable: true, mode: "bubble" },
-                },
-                modes: {
-                    bubble: {
-                        distance: 80,
-                        size: 1,
-                        duration: 3,
-                        opacity: 1,
-                        speed: 3,
-                    },
-                },
-            },
-        },
-    });
-})();
-
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 
@@ -203,6 +116,28 @@ function updateConnectorLine() {
     horizontal.style.strokeDashoffset = horizontal.getTotalLength();
 }
 
+var stats = {
+    "niko" : {
+        "focus": 20,
+        "bandwidth": 20,
+        "reach": 12,
+        "control": 28,
+        "capacity": 16
+    }
+};
+
+function showProfile(character) {
+
+    $.each( stats[character], async function(stat, value) {
+        document.getElementById(`${character}-profile`).style.display='grid';
+        $(`.percent#${stat}`).html(value);
+        $(`.progressbar#${stat}`).animate({width:`${(value/30)*100}%`}, 1000, "swing")
+        await delay(700)
+    
+    });
+}
+
+
 $(async function () {
     $('html')[0].style.overflow = 'hidden'
 
@@ -230,6 +165,89 @@ $(async function () {
         );
     });
 
+    await loadSlim(tsParticles);
 
+    await tsParticles.load({
+        id: "star-background",
+        options: {
+            fullScreen: {
+                zIndex: 0,
+                enable: false,
+            },
+            particles: {
+                number: {
+                    value: 260,
+                    density: {
+                        enable: false,
+                        area: 10,
+                    },
+                },
+                color: {
+                    value: "#ffffff",
+                },
+                shape: {
+                    type: "circle",
+                    polygon: {
+                        nb_sides: 5,
+                    },
+                },
+                opacity: {
+                    value: 0.6,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 0.25,
+                        opacity_min: 0,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 0.333,
+                        size_min: 0,
+                        sync: false,
+                    },
+                },
+                line_linked: {
+                    enable: false,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 0.1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200,
+                    },
+                },
+            },
+            interactivity: {
+                events: {
+                    onHover: { enable: true, mode: "bubble" },
+                },
+                modes: {
+                    bubble: {
+                        distance: 80,
+                        size: 1,
+                        duration: 3,
+                        opacity: 1,
+                        speed: 3,
+                    },
+                },
+            },
+        },
+    });
 
 });
