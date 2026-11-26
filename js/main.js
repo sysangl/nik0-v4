@@ -184,20 +184,23 @@ async function closeProfile(character) {
 
 async function scrambleText(element) {
     const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=`![]{}|,<.>/?"
-    const original = element.textContent
     const raw = element.textContent
     element.textContent = ''
     const spans = raw.split('').map(ch => {
         const s = document.createElement('span')
         s.className = 'char'
         s.textContent = ch
+        s.dataset.target = ch
         element.appendChild(s)
         return s
     })
+
+    shuffleArray(spans)
+    
     spans.forEach((char, i) => {
         if (char.textContent === ' ') return;
         let ticks = 0;
-        const target = original[i]
+        const target = char.dataset.target
         const delay = i*5
         const maxIter = 20 + (Math.random()*6)
         setTimeout(()=>{
