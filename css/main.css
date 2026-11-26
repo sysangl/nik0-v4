@@ -7,6 +7,7 @@
 html {
     scrollbar-width: none;
     scroll-behavior: smooth;
+    overflow: hidden;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
     -ms-overflow-style: none; 
     scrollbar-width: none;
     color: #fff;
+    overflow: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -189,7 +191,7 @@ body::-webkit-scrollbar {
     height: -webkit-fill-available;
     aspect-ratio: initial;
     align-self: center;
-    background-image: url('../assets/avatar.png');
+    background-image: url('../assets/sniper-card.png');
     background-size: cover;
     background-position: center;
 }
@@ -217,6 +219,11 @@ body::-webkit-scrollbar {
 #niko-profile #left #stats {
     justify-self: center;
     width: 100%;
+    margin-top: 20px;
+}
+
+#niko-profile #left #stats ul {
+    margin-top: 0;
 }
 
 #niko-profile #left #stats ul li {
@@ -243,6 +250,24 @@ body::-webkit-scrollbar {
     width: 100%;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.close-button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 10px;
+}
+
+.close-button svg {
+    fill: white;
+    stroke-color: white;
+    opacity: 0.5;
+}
+
+.close-button svg:hover {
+    opacity: 1;
 }
 
 .bar-container {

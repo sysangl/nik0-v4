@@ -6,20 +6,19 @@ const nikoPng = document.getElementById("niko-heights");
 const nikoPopup = document.getElementById("niko-popup");
 let canvas, ctx, imageData;
 
-nikoPng.addEventListener("load", function () {
+nikoPng.addEventListener("load", async function () {
     canvas = document.createElement("canvas");
     canvas.width = nikoPng.naturalWidth;
     canvas.height = nikoPng.naturalHeight;
     ctx = canvas.getContext("2d");
     ctx.drawImage(nikoPng, 0, 0);
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    nikoPng.addEventListener("click", (e) => {
+        handlePngClick(e);
+    });
+    nikoPng.addEventListener("mousemove", handlePngMove);
+    nikoPng.addEventListener("mouseenter", updateConnectorLine);
 });
-
-nikoPng.addEventListener("click", (e) => {
-    handlePngClick(e);
-});
-nikoPng.addEventListener("mousemove", handlePngMove);
-nikoPng.addEventListener("mouseenter", updateConnectorLine);
 
 function mouseToCanvas(e) {
     const pngRect = nikoPng.getBoundingClientRect();
@@ -137,6 +136,13 @@ function showProfile(character) {
     });
 }
 
+function closeProfile(character) {
+    $.each( stats[character], async function(stat, value) {
+        document.getElementById(`${character}-profile`).style.display='none';
+        $(`.percent#${stat}`).html(0);
+        $(`.progressbar#${stat}`).animate({width:`0%`}, 1000, "swing")
+    });
+}
 
 $(async function () {
     $('html')[0].style.overflow = 'hidden'
@@ -150,6 +156,11 @@ $(async function () {
 
     
     await delay(1000*(Math.random()+1))
+    $("html, body").animate(
+        { scrollTop: 0 },
+        0,
+        "linear",
+    );
     $("#preloader-screen").animate( {opacity: 0}, 1000, "swing")
     await delay(1000)
     $("#preloader-screen").hide()
@@ -164,6 +175,7 @@ $(async function () {
             "swing",
         );
     });
+
 
     await loadSlim(tsParticles);
 
