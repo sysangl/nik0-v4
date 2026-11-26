@@ -251,7 +251,7 @@ body::-webkit-scrollbar {
     text-align: right;
 }
 
-#niko-profile #left #stats span {
+#niko-profile #left #stats > span {
     display: inline-block;
     text-align: center;
     width: 100%;
@@ -432,6 +432,18 @@ body::-webkit-scrollbar {
 
 #info-container #top .image {
     background-image: url('../assets/judgement.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#info-container #mid .image {
+    background-image: url('../assets/lovers.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#info-container #bottom .image {
+    background-image: url('../assets/DSC_3449.JPG');
     background-size: cover;
     background-position: center;
 }

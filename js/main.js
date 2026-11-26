@@ -129,11 +129,12 @@ async function showProfile(character) {
     document.getElementById(`${character}-profile`).style.display='grid';
     document.getElementById('niko-profile').classList.add('active')
     await delay(600)
-    $.each( stats[character], async function(stat, value) {
+    for (const [stat, value] of Object.entries(stats[character])) {
+        console.log(stat,value)
         $(`.percent#${stat}`).html(value);
         $(`.progressbar#${stat}`).animate({width:`${(value/30)*100}%`}, 1000, "swing")
         await delay(700)
-    });
+    }
 }
 
 async function closeProfile(character) {
@@ -141,7 +142,7 @@ async function closeProfile(character) {
     await delay(600)
     $.each( stats[character], async function(stat, value) {
         $(`.percent#${stat}`).html(0);
-        $(`.progressbar#${stat}`).animate({width:`0%`}, 1000, "swing")
+        $(`.progressbar#${stat}`).animate({width:`0%`}, 100, "swing")
     });
     document.getElementById(`${character}-profile`).style.display='none';
 }
