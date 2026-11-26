@@ -1,5 +1,7 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
+function detectMobile() {
+    return ( ( window.innerWidth <= 1000 ) && ( window.innerHeight <= 1000 ) );
+}
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -171,19 +173,23 @@ async function showProfile(character) {
 }
 
 async function closeProfile(character) {
-    document.getElementById('niko-profile').classList.remove('active')
+    const profile = document.getElementById(`${character}-profile`)
+    profile.classList.remove('active')
     await delay(600)
     $.each( stats[character], async function(stat, value) {
         $(`.percent#${stat}`).html(0);
         $(`.progressbar#${stat}`).animate({width:`0%`}, 100, "swing")
     });
-    document.getElementById(`${character}-profile`).style.display='none';
+    for (const element of profile.getElementsByClassName('scramble-text')) {
+        element.innerHTML = element.textContent
+    }
+    profile.style.display='none';
 }
 
 
 
 async function scrambleText(element) {
-    const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=`![]{}|,<.>/?"
+    const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=[]{}|./?"
     const raw = element.textContent
     element.textContent = ''
     const spans = raw.split('').map(ch => {
@@ -223,6 +229,19 @@ $(async function () {
 
     $('html')[0].style.overflow = 'hidden'
 
+    if (detectMobile()) {
+        const pl = document.getElementById('preloader')
+        pl.textContent = 'This page may not work correctly on touchscreen devices'
+        const mb = document.getElementById('mobile-button')
+        mb.style.visibility = 'visible'
+        const mobileContinuePromise = new Promise(resolve => {
+            mb.onclick = resolve;
+        });
+        await mobileContinuePromise;
+        mb.style.visibility = 'hidden'
+        pl.innerHTML = 'Loading<br>'
+    }
+
     for (let i = 0; i < 9; i++) {
         var s = document.createElement("span");
         s.classList.add("preloader-stripe");
@@ -242,36 +261,29 @@ $(async function () {
         current_view = 'info'
     });
 
+    var scrolling = false
+    var current_idx = 0
+    const sections = ['heights', 'info', 'link']
     document.onwheel = async function (e) {
-        if (e.deltaY <= 0) {
-            switch (current_view) {
-                case 'info':
-                    
-                    $("html, body").animate(
-                        { scrollTop: 0},
-                        500,
-                        "swing",
-                    );
-                    await delay(600);
-                    current_view = 'heights'
-                default:
-                    break;
-            }
+        if (scrolling) return;
+        scrolling = true
+        if (e.deltaY <= 0 && current_idx > 0) {
+            current_idx--
+        } else if (e.deltaY > 0 && current_idx < sections.length - 1) {
+            current_idx++
         } else {
-            switch (current_view) {
-                case 'heights':
-                    $("html, body").animate(
-                        { scrollTop: $("#info-container").offset().top},
-                        500,
-                        "swing",
-                    );
-                    await delay(600);
-                    current_view = 'info'
-    
-                default:
-                    break;
-            }
+            scrolling = false
+            return
         }
+
+        await $("html, body").animate(
+            { scrollTop: $(`#${sections[current_idx]}-container`).offset().top},
+            500,
+            "swing",
+        );
+        current_view = 'info'
+
+        scrolling = false
     }
 
     await loadSlim(tsParticles);
