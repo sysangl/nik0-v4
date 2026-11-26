@@ -263,7 +263,7 @@ $(async function () {
 
     var scrolling = false
     var current_idx = 0
-    const sections = ['heights', 'info', 'link']
+    const sections = ['heights', 'info', 'directory']
     document.onwheel = async function (e) {
         if (scrolling) return;
         scrolling = true
@@ -281,8 +281,7 @@ $(async function () {
             500,
             "swing",
         );
-        current_view = 'info'
-
+        document.title = `NIK0//${sections[current_idx].toUpperCase()}`
         scrolling = false
     }
 
