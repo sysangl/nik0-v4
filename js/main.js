@@ -225,8 +225,6 @@ async function scrambleText(element) {
 
 
 $(async function () {
-    var current_view = 'heights'
-
     $('html')[0].style.overflow = 'hidden'
 
     if (detectMobile()) {
@@ -263,7 +261,7 @@ $(async function () {
 
     var scrolling = false
     var current_idx = 0
-    const sections = ['heights', 'info', 'directory']
+    const sections = ['heights', 'info', 'directory', 'card']
     document.onwheel = async function (e) {
         if (scrolling) return;
         scrolling = true

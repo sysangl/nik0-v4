@@ -13,7 +13,8 @@ html {
 body {
     background-color: var(--background-blue);
     display: grid;
-    grid-template-rows: 100vh 120px 100vh 120px 100vh;
+    grid-template-rows: repeat(4, 100vh);
+    grid-row-gap: 120px;
     margin: 0;
     font-family: 'Electrolize';
     scroll-behavior: smooth;
@@ -80,7 +81,7 @@ body::-webkit-scrollbar {
 }
 
 #heights-container {
-    display: grid;
+    display:grid;
     align-items: end;
     justify-items: center;
     background: linear-gradient(180deg,var(--background-darkest) 0%, var(--background-darkest) 40%, var(--background-blue) 100%);
@@ -92,6 +93,7 @@ body::-webkit-scrollbar {
     bottom: 5px;
     height: 80%;
     overflow: hidden;
+    align-self: end;
 }
 
 #heights-container #markings {
@@ -524,4 +526,19 @@ body::-webkit-scrollbar {
 
 #directory-container {
     display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.directory-button {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    background: #1e1e1e;
+}
+
+.directory-button:hover {
+    filter: brightness(1.2);
 }
