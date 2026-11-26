@@ -363,7 +363,7 @@ $(async function () {
     const imageLoadPromise = new Promise(resolve => {
         nikoPng = new Image();
         nikoPng.onload = resolve;
-        nikoPng.src = imageUrl;
+        nikoPng.src = nikoPng.dataset.src;
     });
     await imageLoadPromise;
 
