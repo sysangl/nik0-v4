@@ -309,6 +309,28 @@ $(async function () {
     nikoPng.addEventListener("mousemove", handlePngMove);
     nikoPng.addEventListener("mouseenter", updateConnectorLine);
     
+    $('.directory-button').each((idx, btn)=>{
+        btn.onclick = (e) => {
+            switch (e.target.id) {
+                case 'showcase':
+                    
+                    break;
+            
+                case 'github':
+                    window.location.href = 'https://github.com/sysangl/'
+                    
+
+                case 'avali':
+                    window.location.href = 'https://avali.zone/'
+
+                case 'zor':
+                    window.location.href = 'https://zoruniverse.info/'
+
+                default:
+                    break;
+            }
+        }
+    })
 
 
     await delay(1000*(Math.random()+1))
