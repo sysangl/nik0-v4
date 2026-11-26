@@ -216,6 +216,8 @@ async function scrambleText(element) {
     });
 }
 
+
+
 $(async function () {
     var current_view = 'heights'
 
@@ -357,6 +359,14 @@ $(async function () {
         },
     });
 
+
+    const imageLoadPromise = new Promise(resolve => {
+        nikoPng = new Image();
+        nikoPng.onload = resolve;
+        nikoPng.src = imageUrl;
+    });
+    await imageLoadPromise;
+
     canvas = document.createElement("canvas");
     canvas.width = nikoPng.naturalWidth;
     canvas.height = nikoPng.naturalHeight;
@@ -369,6 +379,8 @@ $(async function () {
     nikoPng.addEventListener("mousemove", handlePngMove);
     nikoPng.addEventListener("mouseenter", updateConnectorLine);
     
+
+
     await delay(1000*(Math.random()+1))
     $("html, body").animate(
         { scrollTop: 0 },
