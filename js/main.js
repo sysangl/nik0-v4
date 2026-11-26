@@ -87,6 +87,7 @@ function updateConnectorLine() {
     const contRect = container.getBoundingClientRect();
     const diagonal = document.getElementById("diagonal");
     const horizontal = document.getElementById("horizontal");
+    const rectangle = document.getElementById("rectangle")
 
     const popup = document.getElementById("niko-popup");
     const popupRect = popup.getBoundingClientRect();
@@ -96,18 +97,41 @@ function updateConnectorLine() {
     const startX = popupRect.left - contRect.left;
     const startY = popupRect.bottom - contRect.top;
 
-    const endX = startX - imageRect.width / 8;
+    const endX = imageRect.left + (2* imageRect.width) / 3;
     const endY = imageRect.top + imageRect.height / 16;
 
-    const diagX = endX;
-    const diagY = startY + imageRect.width / 8;
+    const diagX = startX - imageRect.width / 8;
+    const diagY = startY + 3*imageRect.width / 8;
 
     diagonal.setAttribute("d", `M ${startX} ${startY} L ${diagX} ${diagY}`);
 
     horizontal.setAttribute(
         "d",
-        `M ${diagX} ${diagY} L ${imageRect.left + (9 * imageRect.width) / 16} ${diagY}`,
+        `M ${diagX} ${diagY} L ${endX} ${diagY}`,
     );
+
+    const rectWidth = imageRect.width / 3
+    const rectHeight = 3*imageRect.width / 4
+
+    rectangle.setAttribute(
+        "x",
+        endX - rectWidth
+    )
+
+    rectangle.setAttribute(
+        "y",
+        diagY
+    )
+
+    rectangle.setAttribute(
+        "width",
+        rectWidth
+    )
+
+    rectangle.setAttribute(
+        "height",
+        rectHeight
+    )
 
     diagonal.style.strokeDasharray = diagonal.getTotalLength();
     diagonal.style.strokeDashoffset = diagonal.getTotalLength();
