@@ -1,6 +1,6 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function detectMobile() {
-    return ( ( window.innerWidth <= 1000 ) && ( window.innerHeight <= 1000 ) );
+    return ( ( window.innerWidth <= 900 ) && ( window.innerHeight <= 900 ) );
 }
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -287,6 +287,7 @@ $(async function () {
     }
 
     await loadSlim(tsParticles);
+    await loadMeteorsPreset(tsParticles);
 
     await tsParticles.load({
         id: "star-background",
@@ -368,6 +369,52 @@ $(async function () {
                     },
                 },
             },
+        },
+    });
+
+
+    await tsParticles.load({
+        id: "shooting-star-background",
+        options: {
+            preset: "meteors",
+            fullScreen: {
+                zIndex: 0,
+                enable: false,
+            },
+            background: {
+                color: '#00000000'
+            },
+            particles: {
+                paint: {
+                    color: {
+                        value: "#7dffda",
+                    },
+                },
+                move: {
+                    enable: true,
+                    speed: { min: 3, max: 6 },
+                    straight: true,
+                    direction: 140,
+                    outModes: {
+                        default: "destroy",
+                    },
+                },
+            },
+            emitters: {
+                    position: {
+                    x: 100,
+                    y: 0,
+                },
+                    size: {
+                    width: 100,
+                    height: 0,
+                },
+                    rate: {
+                    delay: 0.4,
+                    quantity: 2,
+                },
+            },
+
         },
     });
 

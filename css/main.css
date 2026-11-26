@@ -45,7 +45,6 @@ body::-webkit-scrollbar {
     font-size: 1.5rem;
     /* width: 20%; */
     text-align: center;
-    position: absolute;
 }
 
 .preloader-stripe {
@@ -128,6 +127,18 @@ body::-webkit-scrollbar {
 
 #star-background canvas {
     position: absolute !important;
+}
+
+#shooting-star-background {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    top: 0;
+}
+
+#shooting-star-background canvas {
+    position: absolute !important;
+    background-color: #00000000 !important;
 }
 
 #fade-overlay {
