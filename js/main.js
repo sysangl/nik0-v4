@@ -97,11 +97,11 @@ function updateConnectorLine() {
     const startX = popupRect.left - contRect.left;
     const startY = popupRect.bottom - contRect.top;
 
-    const endX = imageRect.left + (2* imageRect.width) / 3;
+    const endX = imageRect.left + (imageRect.width / 2) + 0.6*imageRect.width / 4;
     const endY = imageRect.top + imageRect.height / 16;
 
     const diagX = startX - imageRect.width / 8;
-    const diagY = startY + 3*imageRect.width / 8;
+    const diagY = startY + 1.5*imageRect.height / 11;
 
     diagonal.setAttribute("d", `M ${startX} ${startY} L ${diagX} ${diagY}`);
 
@@ -110,8 +110,8 @@ function updateConnectorLine() {
         `M ${diagX} ${diagY} L ${endX} ${diagY}`,
     );
 
-    const rectWidth = imageRect.width / 3
-    const rectHeight = 3*imageRect.width / 4
+    const rectWidth = 1.2*imageRect.width / 4
+    const rectHeight = 4*imageRect.height / 11
 
     rectangle.setAttribute(
         "x",

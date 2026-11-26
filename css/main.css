@@ -340,11 +340,15 @@ body::-webkit-scrollbar {
 #connector path, #connector rect {
     fill:none;
     stroke:  #fff;
-    stroke-width: 2;
+    stroke-width: 1;
     stroke-linecap: round;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
 }
+
+/* #connector rect {
+    stroke-width: 1;
+} */
 
 #connector.active #diagonal {
     transition: stroke-dashoffset 400ms ease !important;
