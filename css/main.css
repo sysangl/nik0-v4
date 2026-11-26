@@ -198,7 +198,7 @@ body::-webkit-scrollbar {
     height: -webkit-fill-available;
     aspect-ratio: initial;
     align-self: center;
-    background-image: url('../assets/sniper-card.png');
+    /* background-image: url('../assets/sniper-card.png'); */
     background-size: cover;
     background-position: center;
 }
@@ -257,6 +257,14 @@ body::-webkit-scrollbar {
     width: 100%;
     font-weight: bold;
     font-size: 1.1rem;
+}
+
+.profile .scramble-text {
+    font-family: 'Oxygen Mono';
+}
+
+.profile .scramble-text {
+    visibility: hidden;
 }
 
 .close-button {

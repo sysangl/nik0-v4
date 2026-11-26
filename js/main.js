@@ -1,5 +1,11 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 const connectorSvg = document.getElementById("connector");
 const nikoPng = document.getElementById("niko-heights");
@@ -150,11 +156,14 @@ var stats = {
 };
 
 async function showProfile(character) {
-    document.getElementById(`${character}-profile`).style.display='grid';
-    document.getElementById('niko-profile').classList.add('active')
+    const profile = document.getElementById(`${character}-profile`)
+    profile.style.display='grid';
+    profile.classList.add('active')
     await delay(600)
+    for (const element of profile.getElementsByClassName('scramble-text')) {
+        scrambleText(element)
+    }
     for (const [stat, value] of Object.entries(stats[character])) {
-        console.log(stat,value)
         $(`.percent#${stat}`).html(value);
         $(`.progressbar#${stat}`).animate({width:`${(value/30)*100}%`}, 1000, "swing")
         await delay(700)
@@ -169,6 +178,39 @@ async function closeProfile(character) {
         $(`.progressbar#${stat}`).animate({width:`0%`}, 100, "swing")
     });
     document.getElementById(`${character}-profile`).style.display='none';
+}
+
+
+
+async function scrambleText(element) {
+    const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=`![]{}|,<.>/?"
+    const original = element.textContent
+    const raw = element.textContent
+    element.textContent = ''
+    const spans = raw.split('').map(ch => {
+        const s = document.createElement('span')
+        s.className = 'char'
+        s.textContent = ch
+        element.appendChild(s)
+        return s
+    })
+    spans.forEach((char, i) => {
+        if (char.textContent === ' ') return;
+        let ticks = 0;
+        const target = original[i]
+        const delay = i*5
+        const maxIter = 20 + (Math.random()*6)
+        setTimeout(()=>{
+            char.style.visibility = 'visible'
+            const interval = setInterval( () => {
+                char.textContent = ticks > maxIter ? target : CHARS[Math.floor(Math.random() * CHARS.length)]
+                if (ticks >= maxIter) {
+                    clearInterval(interval)
+                }
+                ticks++
+            },5)
+        },delay)
+    });
 }
 
 $(async function () {
@@ -323,8 +365,6 @@ $(async function () {
     });
     nikoPng.addEventListener("mousemove", handlePngMove);
     nikoPng.addEventListener("mouseenter", updateConnectorLine);
-
-
     
     await delay(1000*(Math.random()+1))
     $("html, body").animate(
