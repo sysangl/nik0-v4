@@ -169,14 +169,21 @@ body::-webkit-scrollbar {
 #niko-profile {
     z-index: 10;
     width: calc(100% - 80px);
-    height: calc(100% - 80px);
-    right: 0px;
+    height: 0px;
+    justify-self: center;
+    align-self: center;
     position: absolute;
     background-color: #010e00;
     display: none;
     grid-template-columns: 25% 75%;
     margin: 40px;
     box-sizing: border-box;
+    transition: height 600ms ease-in-out;
+    overflow: hidden;
+}
+
+#niko-profile.active {
+    height: calc(100% - 80px);
 }
 
 #niko-profile #left {
@@ -402,14 +409,39 @@ body::-webkit-scrollbar {
     padding: 20px;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 2.2rem repeat(1, 1fr);
-    grid-template-columns: max-content repeat(1, 1fr);
+    grid-template-rows: 2.2rem repeat(3, 1fr);
+    grid-row-gap: 10px;
+}
+
+#info-container div {
+    display: grid;
+    font-size: 1.1rem;
+}
+
+#info-container #top {
+    grid-template-columns: 75% 25%;
+}
+
+#info-container #mid {
+    grid-template-columns: 25% 75%;
+}
+
+#info-container #bottom {
+    grid-template-columns: 75% 25%;
+}
+
+#info-container #top .image {
+    background-image: url('../assets/judgement.png');
+    background-size: cover;
+    background-position: center;
 }
 
 #info-container header {
+    display: grid;
     font-size: 2rem;
     align-self: center;
     word-wrap: none;
+    grid-template-columns: max-content repeat(1, 1fr);
 }
 #info-container .stripes {
     background: repeating-linear-gradient(

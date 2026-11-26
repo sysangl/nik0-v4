@@ -6,19 +6,19 @@ const nikoPng = document.getElementById("niko-heights");
 const nikoPopup = document.getElementById("niko-popup");
 let canvas, ctx, imageData;
 
-nikoPng.addEventListener("load", async function () {
-    canvas = document.createElement("canvas");
-    canvas.width = nikoPng.naturalWidth;
-    canvas.height = nikoPng.naturalHeight;
-    ctx = canvas.getContext("2d");
-    ctx.drawImage(nikoPng, 0, 0);
-    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-    nikoPng.addEventListener("click", (e) => {
-        handlePngClick(e);
-    });
-    nikoPng.addEventListener("mousemove", handlePngMove);
-    nikoPng.addEventListener("mouseenter", updateConnectorLine);
-});
+// nikoPng.addEventListener("load", async function () {
+//     canvas = document.createElement("canvas");
+//     canvas.width = nikoPng.naturalWidth;
+//     canvas.height = nikoPng.naturalHeight;
+//     ctx = canvas.getContext("2d");
+//     ctx.drawImage(nikoPng, 0, 0);
+//     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+//     nikoPng.addEventListener("click", (e) => {
+//         handlePngClick(e);
+//     });
+//     nikoPng.addEventListener("mousemove", handlePngMove);
+//     nikoPng.addEventListener("mouseenter", updateConnectorLine);
+// });
 
 function mouseToCanvas(e) {
     const pngRect = nikoPng.getBoundingClientRect();
@@ -125,26 +125,30 @@ var stats = {
     }
 };
 
-function showProfile(character) {
-
+async function showProfile(character) {
+    document.getElementById(`${character}-profile`).style.display='grid';
+    document.getElementById('niko-profile').classList.add('active')
+    await delay(600)
     $.each( stats[character], async function(stat, value) {
-        document.getElementById(`${character}-profile`).style.display='grid';
         $(`.percent#${stat}`).html(value);
         $(`.progressbar#${stat}`).animate({width:`${(value/30)*100}%`}, 1000, "swing")
         await delay(700)
-    
     });
 }
 
-function closeProfile(character) {
+async function closeProfile(character) {
+    document.getElementById('niko-profile').classList.remove('active')
+    await delay(600)
     $.each( stats[character], async function(stat, value) {
-        document.getElementById(`${character}-profile`).style.display='none';
         $(`.percent#${stat}`).html(0);
         $(`.progressbar#${stat}`).animate({width:`0%`}, 1000, "swing")
     });
+    document.getElementById(`${character}-profile`).style.display='none';
 }
 
 $(async function () {
+    var current_view = 'heights'
+
     $('html')[0].style.overflow = 'hidden'
 
     for (let i = 0; i < 9; i++) {
@@ -154,28 +158,49 @@ $(async function () {
         document.getElementById("preloader").appendChild(s);
     }
 
-    
-    await delay(1000*(Math.random()+1))
-    $("html, body").animate(
-        { scrollTop: 0 },
-        0,
-        "linear",
-    );
-    $("#preloader-screen").animate( {opacity: 0}, 1000, "swing")
-    await delay(1000)
-    $("#preloader-screen").hide()
-    $('html')[0].style.overflow = 'auto'
 
-
-    $("#scroll-arrows").on("click", function (e) {
+    $("#scroll-arrows").on("click", async function (e) {
         e.preventDefault();
         $("html, body").animate(
             { scrollTop: $("#info-container").offset().top },
             500,
             "swing",
         );
+        await delay(600);
+        current_view = 'info'
     });
 
+    document.onwheel = async function (e) {
+        if (e.deltaY <= 0) {
+            switch (current_view) {
+                case 'info':
+                    
+                    $("html, body").animate(
+                        { scrollTop: 0},
+                        500,
+                        "swing",
+                    );
+                    await delay(600);
+                    current_view = 'heights'
+                default:
+                    break;
+            }
+        } else {
+            switch (current_view) {
+                case 'heights':
+                    $("html, body").animate(
+                        { scrollTop: $("#info-container").offset().top},
+                        500,
+                        "swing",
+                    );
+                    await delay(600);
+                    current_view = 'info'
+    
+                default:
+                    break;
+            }
+        }
+    }
 
     await loadSlim(tsParticles);
 
@@ -261,5 +286,33 @@ $(async function () {
             },
         },
     });
+
+    canvas = document.createElement("canvas");
+    canvas.width = nikoPng.naturalWidth;
+    canvas.height = nikoPng.naturalHeight;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(nikoPng, 0, 0);
+    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    nikoPng.addEventListener("click", (e) => {
+        handlePngClick(e);
+    });
+    nikoPng.addEventListener("mousemove", handlePngMove);
+    nikoPng.addEventListener("mouseenter", updateConnectorLine);
+
+
+    
+    await delay(1000*(Math.random()+1))
+    $("html, body").animate(
+        { scrollTop: 0 },
+        0,
+        "linear",
+    );
+    $("#preloader-screen").animate( {opacity: 0}, 1000, "swing")
+    await delay(1000)
+    $("#preloader-screen").hide()
+    // $('html')[0].style.overflow = 'auto'
+
+
+
 
 });
