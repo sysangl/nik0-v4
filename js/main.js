@@ -8,7 +8,7 @@ function shuffleArray(array) {
 }
 
 const connectorSvg = document.getElementById("connector");
-const nikoPng = document.getElementById("niko-heights");
+let nikoPng = document.getElementById("niko-heights");
 const nikoPopup = document.getElementById("niko-popup");
 let canvas, ctx, imageData;
 
