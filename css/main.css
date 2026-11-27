@@ -573,7 +573,7 @@ body::-webkit-scrollbar {
 .directory-button#avali #avali-logo {
     width: 100%;
     height: 80%;
-    background: url('https://avali.zone/static/icons/avali.png');
+    background: url('../assets/avali-illuminate-transparent.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

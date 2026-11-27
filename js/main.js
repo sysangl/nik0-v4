@@ -36,6 +36,7 @@ const connectorSvg = document.getElementById("connector");
 let nikoPng = document.getElementById("niko-heights");
 const nikoPopup = document.getElementById("niko-popup");
 let canvas, ctx, imageData;
+var block_scroll = false
 
 // nikoPng.addEventListener("load", async function () {
 //     canvas = document.createElement("canvas");
@@ -181,6 +182,7 @@ var stats = {
 };
 
 async function showProfile(character) {
+    block_scroll = true
     const profile = document.getElementById(`${character}-profile`)
     profile.style.visibility = 'visible'
     // profile.style.setProperty('--open-height', `${vh(100)-80}px`)
@@ -208,6 +210,7 @@ async function closeProfile(character) {
         element.innerHTML = element.textContent
     }
     profile.style.visibility='hidden';
+    block_scroll = false
 }
 
 
@@ -231,7 +234,7 @@ async function scrambleText(element) {
         if (char.textContent === ' ') return;
         let ticks = 0;
         const target = char.dataset.target
-        const delay = i*5
+        const delay = i*10
         const maxIter = 20 + (Math.random()*6)
         setTimeout(()=>{
             char.style.visibility = 'visible'
@@ -241,7 +244,7 @@ async function scrambleText(element) {
                     clearInterval(interval)
                 }
                 ticks++
-            },5)
+            },20)
         },delay)
     });
 }
@@ -283,18 +286,18 @@ $(async function () {
         current_view = 'info'
     });
 
-    var scrolling = false
+
     var current_idx = 0
     const sections = ['heights', 'info', 'directory', 'card']
     document.onwheel = async function (e) {
-        if (scrolling) return;
-        scrolling = true
+        if (block_scroll) return;
+        block_scroll = true
         if (e.deltaY <= 0 && current_idx > 0) {
             current_idx--
         } else if (e.deltaY > 0 && current_idx < sections.length - 1) {
             current_idx++
         } else {
-            scrolling = false
+            block_scroll = false
             return
         }
 
@@ -304,7 +307,9 @@ $(async function () {
             "swing",
         );
         document.title = `NIK0//${sections[current_idx].toUpperCase()}`
-        scrolling = false
+        await delay(500);
+        block_scroll = false
+    
     }
 
     await loadSlim(tsParticles);
