@@ -219,7 +219,7 @@ async function closeProfile(character) {
 
 
 async function scrambleText(element) {
-    const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=[]{}|./?"
+    const CHARS = ".,·-─~+:;=*π┐┌┘┴┬╗╔╝╚╬╠╣╩╦║░▒▓█▄▀▌▐"
     let spans
     // if (!element.split) {
     const raw = element.textContent
@@ -243,8 +243,8 @@ async function scrambleText(element) {
         if (char.textContent === ' ') return;
         let ticks = 0;
         const target = char.dataset.target
-        const delay = i*10
-        const maxIter = 20 + (Math.random()*6)
+        const delay = i*2
+        const maxIter = 8 + (Math.random()*6)
         setTimeout(()=>{
             char.style.visibility = 'visible'
             const interval = setInterval( () => {
@@ -253,7 +253,7 @@ async function scrambleText(element) {
                     clearInterval(interval)
                 }
                 ticks++
-            },20)
+            },50)
         },delay)
     });
 }

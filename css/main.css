@@ -295,10 +295,8 @@ body::-webkit-scrollbar {
 }
 
 .profile .scramble-text {
-    font-family: 'Oxygen Mono';
-}
-
-.profile .scramble-text {
+    font-family: 'Iosevka Charon Mono';
+    letter-spacing: 1px;
     visibility: hidden;
 }
 
