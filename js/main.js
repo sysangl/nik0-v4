@@ -9,6 +9,29 @@ function shuffleArray(array) {
     }
 }
 
+function convertRemToPixels(rem) {    
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+const vh = (percent) => {
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    return (percent * h) / 100;
+}
+
+const vw = (percent) => {
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    return (percent * w) / 100;
+}
+
+const vmin = (percent) => {
+    return Math.min(vh(percent), vw(percent));
+}
+
+const vmax = (percent) => {
+    return Math.max(vh(percent), vw(percent));
+}
+
+
 const connectorSvg = document.getElementById("connector");
 let nikoPng = document.getElementById("niko-heights");
 const nikoPopup = document.getElementById("niko-popup");
@@ -159,7 +182,8 @@ var stats = {
 
 async function showProfile(character) {
     const profile = document.getElementById(`${character}-profile`)
-    profile.style.display='grid';
+    profile.style.visibility = 'visible'
+    // profile.style.setProperty('--open-height', `${vh(100)-80}px`)
     profile.classList.add('active')
     await delay(600)
     for (const element of profile.getElementsByClassName('scramble-text')) {
@@ -183,7 +207,7 @@ async function closeProfile(character) {
     for (const element of profile.getElementsByClassName('scramble-text')) {
         element.innerHTML = element.textContent
     }
-    profile.style.display='none';
+    profile.style.visibility='hidden';
 }
 
 

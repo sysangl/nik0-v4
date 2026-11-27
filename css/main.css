@@ -197,6 +197,8 @@ body::-webkit-scrollbar {
 }
 
 #niko-profile {
+
+    --open-height: calc(100% - 80px);
     z-index: 10;
     width: calc(100% - 80px);
     height: 0px;
@@ -204,7 +206,8 @@ body::-webkit-scrollbar {
     align-self: center;
     position: absolute;
     background-color: #010e00;
-    display: none;
+    display: grid;
+    visibility: hidden;
     grid-template-columns: 25% 75%;
     margin: 40px;
     box-sizing: border-box;
@@ -213,7 +216,7 @@ body::-webkit-scrollbar {
 }
 
 #niko-profile.active {
-    height: calc(100% - 80px);
+    height: var(--open-height);
 }
 
 #niko-profile #left {
