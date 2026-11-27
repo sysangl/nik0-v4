@@ -207,6 +207,9 @@ async function closeProfile(character) {
         $(`.progressbar#${stat}`).animate({width:`0%`}, 100, "swing")
     });
     for (const element of profile.getElementsByClassName('scramble-text')) {
+        for (const char of element.childNodes) {
+            char.textContent = char.dataset.target
+        }
         element.innerHTML = element.textContent
     }
     profile.style.visibility='hidden';
@@ -217,9 +220,12 @@ async function closeProfile(character) {
 
 async function scrambleText(element) {
     const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+-=[]{}|./?"
+    let spans
+    // if (!element.split) {
     const raw = element.textContent
+    element.split = true
     element.textContent = ''
-    const spans = raw.split('').map(ch => {
+    spans = raw.split('').map(ch => {
         const s = document.createElement('span')
         s.className = 'char'
         s.textContent = ch
@@ -227,6 +233,9 @@ async function scrambleText(element) {
         element.appendChild(s)
         return s
     })
+    // } else {
+    //     spans = element.childNodes
+    // }
 
     shuffleArray(spans)
     
