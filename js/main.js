@@ -356,7 +356,7 @@ $(async function () {
                     window.location.href = 'https://zoruniverse.info/'
 
                 default:
-                    break;
+                    window.location.href = 'comingsoon'
             }
         }
     })
