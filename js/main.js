@@ -340,10 +340,7 @@ $(async function () {
     
     $('.directory-button').each((idx, btn)=>{
         btn.onclick = (e) => {
-            switch (e.target.id) {
-                case 'showcase':
-                    
-                    break;
+            switch (btn.id) {
             
                 case 'github':
                     window.location.href = 'https://github.com/sysangl/'
