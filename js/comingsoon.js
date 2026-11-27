@@ -54,8 +54,8 @@ function generateBackground() {
     const msg = document.getElementById('message')
     const bgRect = bg.getBoundingClientRect()
     const msgRect = msg.getBoundingClientRect()
-    const colCount = 16
-    const pxSize = bgRect.width/16
+    const colCount = 24
+    const pxSize = bgRect.width/colCount
     const rowCount = Math.round(bgRect.height/pxSize)
     const divCount = colCount * rowCount
     
@@ -76,15 +76,18 @@ function generateBackground() {
         if (dist < threshold) {
             if (Math.random() < Math.exp(-dist/(pxSize*4))) {
                 type = 'white';
-                if (dist > threshold/2) {
+                if (dist > threshold/(1+Math.random())) {
                     type = 'transparent'
                     d.style.animationDuration = `${1900 + (500*Math.random())}ms`
                     d.style.animationDelay = `${1000*Math.random()}`
                 }
             }
-        }
-        if (elementsOverlap(d, msg)) {
+        }else if (elementsOverlap(d, msg)) {
             type='white'
+        } else {
+            if (Math.random() < Math.exp(-1.5)) {
+                d.style.opacity = 0.9 + 0.1 * Math.random()
+            }
         }
         d.classList.add('background-tile',type)
     }

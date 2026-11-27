@@ -16,11 +16,15 @@ body {
     text-align: center;
     color: #000000;
     width: max-content;
+    z-index: 6;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 #message .gray {
     color: #cdcdcd;
 }
+
 
 #background {
     position: absolute;
@@ -40,7 +44,7 @@ body {
 }
 
 .background-tile.transparent {
-    background: #0ff;
+    background: rgb(149, 0, 255);
     opacity: 0.4;
     animation: shimmer 1000ms ease-in-out infinite;
 }
@@ -55,4 +59,21 @@ body {
     100% {
         opacity: 0.4;
     }
+}
+
+#back-btn {
+    position: absolute;
+    bottom: 40px;
+    font-size: 1.5rem;
+    color: #fff;
+    z-index: 5;
+    font-family: 'Oxygen Mono';
+    background: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+#back-btn .gray {
+    color: #3e3e3e;
 }
