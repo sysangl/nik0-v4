@@ -347,21 +347,26 @@ $(async function () {
     nikoPng.addEventListener("mousemove", handlePngMove);
     nikoPng.addEventListener("mouseenter", updateConnectorLine);
     
+
     $('.directory-button').each((idx, btn)=>{
         btn.onclick = (e) => {
+            let url
             switch (true) {
                 case btn.id === 'github':
-                    window.open('https://github.com/sysangl/', '_blank');
+                    url = 'https://github.com/sysangl/'
                     break
                 case btn.id === 'avali':
-                    window.open('https://avali.zone/', '_blank');
+                    url = 'https://avali.zone/'
                     break
                 case btn.id === 'zor':
-                    window.open('https://zoruniverse.info/','_blank');
+                    url = 'https://zoruniverse.info/'
                     break
                 default:
                     window.location.href = 'comingsoon'
-                    break
+                    return
+                }
+            if (confirm(`Proceeding will take you to ${url}`)) {
+                window.open(url, '_blank') 
             }
         }
     })
