@@ -340,20 +340,19 @@ $(async function () {
     
     $('.directory-button').each((idx, btn)=>{
         btn.onclick = (e) => {
-            switch (btn.id) {
-            
-                case 'github':
-                    window.location.href = 'https://github.com/sysangl/'
-                    
-
-                case 'avali':
-                    window.location.href = 'https://avali.zone/'
-
-                case 'zor':
-                    window.location.href = 'https://zoruniverse.info/'
-
+            switch (true) {
+                case btn.id === 'github':
+                    window.open('https://github.com/sysangl/', '_blank');
+                    break
+                case btn.id === 'avali':
+                    window.open('https://avali.zone/', '_blank');
+                    break
+                case btn.id === 'zor':
+                    window.open('https://zoruniverse.info/','_blank');
+                    break
                 default:
                     window.location.href = 'comingsoon'
+                    break
             }
         }
     })
