@@ -297,7 +297,7 @@ $(async function () {
 
 
     var current_idx = 0
-    const sections = ['heights', 'info', 'directory', 'card']
+    const sections = ['card', 'info', 'directory','heights']
     document.onwheel = async function (e) {
         if (block_scroll) return;
         block_scroll = true

@@ -2,7 +2,7 @@
     --background-dark: #1e1e1e;
     --background-darker: #090909;
     --background-darkest: #000;
-    --background-blue: #00103A;
+    --background-blue: #0d0027;
     --background-gray: #111111;
 }
 html {
@@ -71,6 +71,10 @@ body::-webkit-scrollbar {
     }  
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 #mobile-button {
     visibility: hidden;
     height: 30px;
@@ -83,6 +87,7 @@ body::-webkit-scrollbar {
 
 .section {
     overflow: hidden;
+    position: relative;
 }
 
 #heights-container {
@@ -665,8 +670,19 @@ body::-webkit-scrollbar {
     --dot-size: 2px;
     --dot-colour: rgb(48, 48, 48);
 
-    background:
-        linear-gradient(90deg, var(--bg) calc(var(--dot-spacing) - var(--dot-size)), transparent 1%) center / var(--dot-spacing) var(--dot-spacing),
-        linear-gradient(var(--bg) calc(var(--dot-spacing) - var(--dot-size)), transparent 1%) center / var(--dot-spacing) var(--dot-spacing),
+    --dot-background: 
+        linear-gradient(to right,  var(--bg) calc(var(--dot-spacing) - var(--dot-size)), transparent 1%) center / var(--dot-spacing) var(--dot-spacing),
+        linear-gradient(to bottom, var(--bg) calc(var(--dot-spacing) - var(--dot-size)), transparent 1%) center / var(--dot-spacing) var(--dot-spacing),
         var(--dot-colour);
+
+    --grid-spacing: 30px;
+    --grid-width: 2px;
+    --grid-colour: rgba(102, 64, 103, 0.442);
+    --grid-background: 
+    radial-gradient(circle at 50% 50%, transparent 0%, var(--background-blue) 90%),
+        linear-gradient(to right,  var(--grid-colour) var(--grid-width), transparent 1px) center / var(--grid-spacing) var(--grid-spacing),
+        linear-gradient(to bottom, var(--grid-colour) var(--grid-width), transparent 1px) center / var(--grid-spacing) var(--grid-spacing);
+
+    
+    background: var(--grid-background);
 }

@@ -6,11 +6,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>NIK0//HEIGHTS</title>
-
+        
         <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
-
+        
         <link rel="stylesheet" href="./css/main.css" />
-
+        
         <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,94 @@
     </head>
     <body>
         <div id="preloader-screen"><div id="preloader">Loading<br></div><button id="mobile-button" type="button">Press to Continue</button></div>
+        
+        <div id="card-container" class="section">
+            <div id="card">
+                
+            </div>
+        </div>
+
+
+        <div id="info-container" class="section">
+            <header>Heya, I'm Niko<div class="stripes"></div></header>
+            <div id="top">
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus iaculis vulputate. Aenean vehicula maximus fringilla. Mauris vitae porttitor tortor. Nulla dictum semper diam, sed ultricies arcu molestie ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur et urna justo. Donec consequat facilisis pellentesque. In pulvinar ligula sed mauris auctor sagittis. Sed cursus justo nulla, vitae lobortis nibh auctor sed. Nunc fermentum lorem scelerisque nisi luctus, et lacinia velit placerat. 
+                </div>
+                <div class="image">
+
+                </div>
+            </div>
+            <div id="mid">
+                <div class="image"></div>
+                <div>Nulla quis urna volutpat, porttitor quam nec, gravida libero. Cras a finibus ligula. Aliquam iaculis, ligula ac pulvinar auctor, tellus ex lacinia tellus, ut porta sem tortor quis massa. Donec eros augue, porta non lectus id, malesuada congue neque. Fusce non magna scelerisque, mollis leo ac, dictum nunc. Duis porttitor sapien vitae vehicula vulputate. Ut ac gravida nulla. Duis pharetra tincidunt velit vel lacinia. Nulla auctor augue quis dui luctus semper. Proin ultrices non lacus eu auctor. Duis id nisi nec nisl fermentum placerat nec a risus. Nam at libero sem. Duis aliquam urna quis massa aliquam, quis faucibus nulla laoreet. Ut tristique libero id venenatis laoreet. </div>
+            </div>
+            <div id="bottom">
+                <div>Quisque augue quam, gravida a hendrerit eu, pulvinar ac purus. Sed a maximus nibh. Vestibulum varius, nisi volutpat semper scelerisque, ex augue commodo diam, id viverra turpis orci quis lorem. Donec rhoncus massa at purus elementum lacinia. Integer interdum, mi id tincidunt egestas, arcu mauris pellentesque ante, quis vehicula urna dolor a mauris. Cras suscipit consectetur faucibus. Vivamus ante tellus, tincidunt non massa id, imperdiet viverra arcu. Vivamus sagittis vel tortor ac faucibus. Praesent non elit nec libero fermentum hendrerit. Fusce maximus mauris tincidunt, vulputate nisi tempus, lacinia dui. Sed imperdiet nulla quis sem consequat ornare. </div>
+                <div class="image"></div>
+            </div>
+        </div>
+
+
+        <div id="directory-container" class="section">
+            <div class="directory-button" id="showcase">
+                <div class="logo">
+                    Showcase
+                </div>
+                <div class="description">
+                    <span class="title">Coming Soon</span>
+                </div>
+            </div>
+            <div class="directory-button" id="shelf">
+                <div class="logo">
+                    <span class="title">Shelf</span>
+                </div>
+                <div class="description">
+                    Coming Soon
+                </div>
+            </div>
+            <div class="directory-button" id="dfs">
+                <div class="logo"></div>
+                <div class="description">
+                    <span class="title">Coming Soon</span>
+                </div>
+            </div>
+            <div class="directory-button" id="dsg">
+                <div class="logo"></div>
+                <div class="description">
+                    <span class="title">Coming Soon</span>
+                </div>
+            </div>
+            <div class="directory-button" id="sgsd">
+                <div class="logo"></div>
+                <div class="description">
+                    <span class="title">Coming Soon</span>
+                </div>
+            </div>
+            <div class="directory-button" id="github">
+                <div class="logo"></div>
+                <div class="description">
+                    <span class="title">GitHub</span>
+                    My projects
+                </div>
+            </div>
+            <div class="directory-button" id="avali">
+                <div class="logo"></div>
+                <div class="description">
+                    <span class="title">Avali Zone</span>
+                    The community of the Avali
+                    <span class="note">This site is not affiliated with Avali Zone</span>
+                </div>
+            </div>
+            <div class="directory-button" id="zor">
+                <div class="logo"></div>
+                <div class="description">
+                    <span class="title">Zenith's Outer Reach</span> <br>
+                    The home and official community of protogens and primagens.
+                    <span class="note">This site is not affiliated with ZOR</span>
+                </div>
+            </div>
+        </div>
 
         <div id="heights-container" class="section">
             <div id="markings"></div>
@@ -29,8 +117,8 @@
                 type="button"
                 onclick="showProfile('niko')"
                 id="niko-button"
-            ></button>
-            <img id="niko-heights" data-src="./assets/niko-heights-coloured-noise.png"/>
+                ></button>
+                <img id="niko-heights" data-src="./assets/niko-heights-coloured-noise.png"/>
             <div id="fade-overlay"></div>
 
             <div id="niko-popup">
@@ -128,7 +216,7 @@
                 <rect id="rectangle"></rect>
             </svg>
 
-            <div id="scroll-arrows">
+            <div id="scroll-arrows" class="hidden">
                 <div></div>
                 <div>
                     <svg
@@ -203,87 +291,6 @@
             </div>
         </div>
 
-
-        <div id="info-container" class="section">
-            <header>Heya, I'm Niko<div class="stripes"></div></header>
-            <div id="top">
-                <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus iaculis vulputate. Aenean vehicula maximus fringilla. Mauris vitae porttitor tortor. Nulla dictum semper diam, sed ultricies arcu molestie ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur et urna justo. Donec consequat facilisis pellentesque. In pulvinar ligula sed mauris auctor sagittis. Sed cursus justo nulla, vitae lobortis nibh auctor sed. Nunc fermentum lorem scelerisque nisi luctus, et lacinia velit placerat. 
-                </div>
-                <div class="image">
-
-                </div>
-            </div>
-            <div id="mid">
-                <div class="image"></div>
-                <div>Nulla quis urna volutpat, porttitor quam nec, gravida libero. Cras a finibus ligula. Aliquam iaculis, ligula ac pulvinar auctor, tellus ex lacinia tellus, ut porta sem tortor quis massa. Donec eros augue, porta non lectus id, malesuada congue neque. Fusce non magna scelerisque, mollis leo ac, dictum nunc. Duis porttitor sapien vitae vehicula vulputate. Ut ac gravida nulla. Duis pharetra tincidunt velit vel lacinia. Nulla auctor augue quis dui luctus semper. Proin ultrices non lacus eu auctor. Duis id nisi nec nisl fermentum placerat nec a risus. Nam at libero sem. Duis aliquam urna quis massa aliquam, quis faucibus nulla laoreet. Ut tristique libero id venenatis laoreet. </div>
-            </div>
-            <div id="bottom">
-                <div>Quisque augue quam, gravida a hendrerit eu, pulvinar ac purus. Sed a maximus nibh. Vestibulum varius, nisi volutpat semper scelerisque, ex augue commodo diam, id viverra turpis orci quis lorem. Donec rhoncus massa at purus elementum lacinia. Integer interdum, mi id tincidunt egestas, arcu mauris pellentesque ante, quis vehicula urna dolor a mauris. Cras suscipit consectetur faucibus. Vivamus ante tellus, tincidunt non massa id, imperdiet viverra arcu. Vivamus sagittis vel tortor ac faucibus. Praesent non elit nec libero fermentum hendrerit. Fusce maximus mauris tincidunt, vulputate nisi tempus, lacinia dui. Sed imperdiet nulla quis sem consequat ornare. </div>
-                <div class="image"></div>
-            </div>
-        </div>
-
-
-        <div id="directory-container" class="section">
-            <div class="directory-button" id="showcase">
-                <div class="logo">
-                    Showcase
-                </div>
-                <div class="description">
-                    <span class="title">Coming Soon</span>
-                </div>
-            </div>
-            <div class="directory-button" id="shelf">
-                <div class="logo"></div>
-                <div class="description">
-                    Shelf
-                </div>
-            </div>
-            <div class="directory-button" id="dfs">
-                <div class="logo"></div>
-                <div class="description">
-                    <span class="title">Coming Soon</span>
-                </div>
-            </div>
-            <div class="directory-button" id="dsg">
-                <div class="logo"></div>
-                <div class="description">
-                    <span class="title">Coming Soon</span>
-                </div>
-            </div>
-            <div class="directory-button" id="sgsd">
-                <div class="logo"></div>
-                <div class="description">
-                    <span class="title">Coming Soon</span>
-                </div>
-            </div>
-            <div class="directory-button" id="github">
-                <div class="logo"></div>
-                <div class="description">
-                    <span class="title">GitHub</span>
-                    My projects
-                </div>
-            </div>
-            <div class="directory-button" id="avali">
-                <div class="logo"></div>
-                <div class="description">
-                    <span class="title">Avali Zone</span>
-                    The community of the Avali
-                    <span class="note">This site is not affiliated with Avali Zone</span>
-                </div>
-            </div>
-            <div class="directory-button" id="zor">
-                <div class="logo"></div>
-                <div class="description">
-                    <span class="title">Zenith's Outer Reach</span> <br>
-                    The home and official community of protogens and primagens.
-                    <span class="note">This site is not affiliated with ZOR</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="card-container" class="section"></div>
 
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.1.0/jquery.min.js"
