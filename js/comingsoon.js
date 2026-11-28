@@ -54,7 +54,7 @@ function generateBackground() {
     const msg = document.getElementById('message')
     const bgRect = bg.getBoundingClientRect()
     const msgRect = msg.getBoundingClientRect()
-    const colCount = 24
+    const colCount = 25
     const pxSize = bgRect.width/colCount
     const rowCount = Math.round(bgRect.height/pxSize)
     const divCount = colCount * rowCount
